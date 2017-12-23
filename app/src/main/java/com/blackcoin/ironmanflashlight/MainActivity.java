@@ -1,6 +1,7 @@
 package com.blackcoin.ironmanflashlight;
 
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
         if(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)){
 
             Toast.makeText(getApplicationContext(), "Yes!", Toast.LENGTH_SHORT).show();
+
+            Camera cam = Camera.open();
+            Camera.Parameters p = cam.getParameters();
+            p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            cam.setParameters(p);
+            cam.startPreview();
         }
     }
 
