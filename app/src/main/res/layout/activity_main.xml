@@ -13,6 +13,16 @@
         android:scaleType="fitXY"
         android:src="@drawable/off" />
 
+
+    <ImageView
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:scaleType="fitXY"
+        android:src="@drawable/on"/>
+
+
     <Button
         android:id="@+id/flash"
         android:layout_width="220dp"
