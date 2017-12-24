@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             c = Camera.open(); // attempt to get a Camera instance
         }
         catch (Exception e){
-            // Camera is not available (in use or does not exist)
+            // Camera is not available in use or does not exist
             log("Couldn't get the Camera !!!!");
         }
         return c; // returns null if camera is unavailable
