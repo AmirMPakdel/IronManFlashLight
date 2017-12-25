@@ -10,6 +10,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RemoteViews;
+
+import layout.IronManWidgetActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView Background;
 
-    Camera camera;
+    public static Camera camera;
 
     Camera.Parameters par1_on;
 
@@ -38,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        // check if app's widget is enable
+        if(IronManWidgetActivity.WidgetLight){
+
+            log("Bug : FUUUUUUUUUUUUCK!");
+
+            // this line does'nt work!!!
+            IronManWidgetActivity.remoteViews.setViewVisibility(R.id.appwidget_image2, View.INVISIBLE);
+
+            IronManWidgetActivity.WidgetLight = false;
+        }
+
         // inflating the layout
         setContentView(R.layout.activity_main);
 
@@ -45,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
 
         Background = (ImageView) findViewById(R.id.bg);
 
+        try{
+            camera.release();
+
+        }catch (Exception e){
+
+            log(e.toString());
+        }
 
         camera = getCameraInstance();
 
@@ -89,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    protected void TurnOn(){
+    public void TurnOn(){
 
         // turn on the Flash light
 
@@ -104,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    protected void TurnOff(){
+    public void TurnOff(){
 
         // turn off the Flash light
 
