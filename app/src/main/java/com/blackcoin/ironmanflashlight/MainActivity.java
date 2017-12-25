@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
     Camera.Parameters par2_off;
 
-    public static void log(String log){ Log.i("AMP : ", log);}
+    public static void log(String log) {
+        Log.i("AMP : ", log);
+    }
 
 
     @Override
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         // inflating the layout
         setContentView(R.layout.activity_main);
 
-        Button flash = (Button) findViewById(R.id.flash);
+        final Button flash = (Button) findViewById(R.id.flash);
 
         Background = (ImageView) findViewById(R.id.bg);
 
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         // check if the device has the ability
         if(getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
 
+
+            log("Have Flash");
             flash.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -82,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
     }
 
     protected void TurnOn(){
@@ -89,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
         // turn on the Flash light
 
         camera.setParameters(par1_on);
+
+        if(android.os.Build.VERSION.SDK_INT >= 18)
+        {
+            camera.startPreview();
+        }
 
         light = true;
 
